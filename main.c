@@ -5,54 +5,59 @@
  * Return: 0 on success or something else
  */
 /*Look at argv[5]*/
-int main(int argc, char const **argv, char **envp)
+int main(void)
 {
 	char *line = NULL;
-    int result;
+    /**int result;*/
 	ssize_t nread;
 	size_t len = 0;
 	pid_t pid;
-    char *args[11];
+    char *args[MAX_ARGS];
+    /**char *arguments[] ={"/bin/ls", NULL};
 
-	(void)argc;
-    (void)argv;
+
+    argv = arguments;
+    */
 
 	while (1)
 	{
-		_print_str("$ ");
+		_print_str("#cisfun$ ");
 		nread = getline(&line, &len, stdin);
 		if (nread == -1)
 			break;
         
         tokenize_args(args, line);
-        /**args = "/bin/ls", "-l";*/
-        printf("\nArgument passed: %s.\n", args[0]);
+        /**args = "/bin/ls", "-l";
+        printf("\nArgument passed: %s.\n", args[0]);*/
+	if (args[0] == NULL)
+		continue;
+
         pid = fork();
 
-        if (pid == -1)
+        if (pid < 0)
         {
             perror("Process execution failed");
             continue;
         }
         else if (pid == 0)
         {
-            result = execve(args[0], args, envp);
-            if (result == -1)
-            {
-                perror("./shell: No such file or directory");
-                _exit(EXIT_FAILURE);
-            }
+            execve(args[0], args, NULL);
+            perror("./shell: No such file or directory");
+            _exit(EXIT_FAILURE);
         }
         else
         {
             wait(NULL);
         }
-        /*result = execve(line, args, envp);
+        /**result = execve(line, args, envp);
         if (result == -1)
             perror("./shell: No such file or directory");
-        */
+        
 		_print_str(line);
 	}
+	*/
+}
 	free(line);
 	return (0);
+
 }

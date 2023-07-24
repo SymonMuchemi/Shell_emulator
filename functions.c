@@ -25,11 +25,11 @@ int _putchar(char c)
  */
 char *create_buf(char *buf)
 {
-    buf = malloc(sizeof(char) * 1024);
+    buf = malloc(sizeof(char) * BUFSIZE);
     if (buf == NULL)
     {
         perror("Error creating buffer!");
-		exit(99);
+	exit(EXIT_FAILURE);
     }
 
     return (buf);
@@ -64,10 +64,10 @@ void tokenize_args(char **args_array, char *str)
     char *token, *delim;
     int i = 0;
 
-    delim = " ";
+    delim = " \t\n";
     token = strtok(str, delim);
 
-    while (token)
+    while (token && i < MAX_ARGS -1)
     {
         args_array[i++] = token;
         token = strtok(NULL, delim);

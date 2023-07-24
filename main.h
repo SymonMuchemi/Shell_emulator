@@ -11,6 +11,7 @@
 #include <sys/types.h>
 
 #define BUFSIZE 1024
+#define MAX_ARGS 11
 
 char *create_buf(char *buf);
 void _print_str(char *c);
