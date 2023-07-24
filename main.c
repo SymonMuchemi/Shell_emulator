@@ -42,7 +42,7 @@ int main(void)
         else if (pid == 0)
         {
             execve(args[0], args, NULL);
-            perror("./shell: No such file or directory");
+            perror("./shell");
             _exit(EXIT_FAILURE);
         }
         else
