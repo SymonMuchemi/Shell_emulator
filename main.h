@@ -11,11 +11,12 @@
 #include <sys/types.h>
 
 #define BUFSIZE 1024
-#define MAX_ARGS 11
+#define MAX_ARGS 64
 
 char *create_buf(char *buf);
 void _print_str(char *c);
 int _putchar(char c);
 void tokenize_args(char **args_array, char *str);
+char *find_the_path(char *command, char *path[]);
 
 #endif
