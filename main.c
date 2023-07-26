@@ -3,7 +3,6 @@
  * main - the shell playground
  * Return: 0 on success or something else
  */
-/*Look at argv[5]*/
 int main(void)
 {
 	ssize_t nread;
