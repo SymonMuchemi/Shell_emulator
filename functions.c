@@ -78,6 +78,7 @@ void tokenize_args(char **args_array, char *str)
 	char *token, *delim;
 	int i = 0;
 
+	remove_newline(str);
 	delim = " \t\n";
 	token = strtok(str, delim);
 
