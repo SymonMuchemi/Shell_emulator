@@ -19,6 +19,23 @@ return (write(1, &c, 1));
 }
 }
 /**
+* remove_newline - removes the new line from the buffer during execution
+* @str: character
+*
+*/
+void remove_newline(char *str)
+{
+	int len;
+
+	len = strlen(str);
+
+	if (len > 0 && str[len - 1] == '\n')
+	{
+		str[len - 1] = '\0';
+	}
+}
+
+/**
 * create_buf - Create a buffer object
 * @filename: name of file
 * @buf: parameter

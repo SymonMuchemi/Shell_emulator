@@ -39,6 +39,8 @@ nread = getline(&line, &len, stdin);
 if (nread == -1)
 break;
 
+remove_newline(line);
+
 tokenize_args(args, line);
 if (args[0] == NULL)
 continue;
@@ -61,12 +63,12 @@ perror("./shell");
 _exit(EXIT_FAILURE);
 }
 }
-
 else
 {
 wait(NULL);
 }
 }
+
 free(line);
 return (0);
 
