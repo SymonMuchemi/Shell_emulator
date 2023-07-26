@@ -1,85 +1,74 @@
 #include "main.h"
 
 /**
- * main - the shell playground
- * Return: 0 on success or something else
- */
+* main - the shell playground
+* Return: 0 on success or something else
+*/
 /*Look at argv[5]*/
 int main(void)
 {
-	char *line = NULL;
-    /**int result;*/
-	ssize_t nread;
-	size_t len = 0;
-	pid_t pid;
-    char *args[MAX_ARGS];
-    char *executable_path;
-    char *path[MAX_ARGS];
-    char *path_var;
-    int i;
-    /**char *arguments[] ={"/bin/ls", NULL};
+char *line = NULL;
+/**int result;*/
+ssize_t nread;
+size_t len = 0;
+pid_t pid;
+char *args[MAX_ARGS];
+char *executable_path;
+char *path[MAX_ARGS];
+char *path_var;
+int i;
 
-
-    argv = arguments;
-    */
-
-    path_var = getenv("PATH");
-    if (path_var == NULL)
-    {
-	    perror("PATH variable not found");
-	    return (EXIT_FAILURE);
-    }
-
-    i = 0;
-    path[i++] = strtok(path_var, ":");
-    while ((path[i] = strtok(NULL, ":")) != NULL)
-    {
-	    i++;
-    }
-
-	while (1)
-	{
-		_print_str("#cisfun$ ");
-		nread = getline(&line, &len, stdin);
-		if (nread == -1)
-			break;
-        
-        tokenize_args(args, line);
-        /**args = "/bin/ls", "-l";
-        printf("\nArgument passed: %s.\n", args[0]);*/
-	if (args[0] == NULL)
-		continue;
-
-	executable_path = find_the_path(args[0], path);
-	if (executable_path != NULL)
-	{
-		pid = fork();
-		if (pid < 0)
-        {
-            perror("Process execution failed");
-            continue;
-        }
-        else if (pid == 0)
-        {
-            execve(executable_path, args, NULL);
-            perror("./shell");
-            _exit(EXIT_FAILURE);
-        }
-
-	}
-        else
-        {
-            wait(NULL);
-        }
-        /**result = execve(line, args, envp);
-        if (result == -1)
-            perror("./shell: No such file or directory");
-        
-		_print_str(line);
-	}
-	*/
+path_var = getenv("PATH");
+if (path_var == NULL)
+{
+perror("PATH variable not found");
+return (EXIT_FAILURE);
 }
-	free(line);
-	return (0);
+
+i = 0;
+path[i++] = strtok(path_var, ":");
+while ((path[i] = strtok(NULL, ":")) != NULL)
+{
+i++;
+}
+
+while (1)
+{
+_print_str("#cisfun$ ");
+nread = getline(&line, &len, stdin);
+if (nread == -1)
+break;
+
+tokenize_args(args, line);
+if (args[0] == NULL)
+continue;
+
+executable_path = find_the_path(args[0], path);
+if (executable_path != NULL)
+{
+pid = fork();
+
+if (pid < 0)
+{
+perror("Process execution failed");
+continue;
+}
+
+else if (pid == 0)
+{
+execve(executable_path, args, NULL);
+perror("./shell");
+_exit(EXIT_FAILURE);
+}
+
+}
+
+else
+{
+wait(NULL);
+}
+}
+free(line);
+return (0);
 
 }
