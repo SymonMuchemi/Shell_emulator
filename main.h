@@ -19,5 +19,7 @@ int _putchar(char c);
 void tokenize_args(char **args_array, char *str);
 char *find_the_path(char *command, char *path[]);
 void remove_newline(char *str);
+int parse_path(char *path[], int max_paths);
+void execute_command(char **args, char **path);
 
 #endif

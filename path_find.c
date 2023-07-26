@@ -22,3 +22,51 @@ char *find_the_path(char *command, char *path[])
 	}
 	return (NULL);
 }
+/**
+ * parse_path - parse the PATH environment variable and store the
+ * individual paths in the path array.
+ * @path: array of strings
+ * @max_paths: maximum paths
+ * Return: int
+ */
+int parse_path(char *path[], int max_paths)
+{
+	char *path_var = getenv("PATH");
+	int i = 0;
+
+	if (path_var == NULL)
+		return (-1);
+
+	path[i++] = strtok(path_var, ":");
+	while (i < max_paths && (path[i] = strtok(NULL, ":")) != NULL)
+		i++;
+
+	return (i);
+}
+/**
+ * execute_command - process an arg and executes it
+ * @args:  command line arguments
+ * @path: executable file's path
+ * Return: nothing
+ */
+void execute_command(char **args, char **path)
+{
+	pid_t pid = fork();
+	char *executable_path = find_the_path(args[0], path);
+
+	if (executable_path != NULL)
+	{
+		if (pid < 0)
+		{
+			perror("Process execution failed");
+			return;
+		}
+		else if (pid == 0)
+		{
+			execve(executable_path, args, NULL);
+			perror("./shell");
+			_exit(EXIT_FAILURE);
+		}
+		wait(NULL);
+	}
+}
