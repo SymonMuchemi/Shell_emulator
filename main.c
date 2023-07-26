@@ -21,7 +21,7 @@ int main(void)
     path_var = getenv("PATH");
     if (path_var == NULL)
     {
-        perror("PATH variable not found");
+        perror("./hsh");
         return (EXIT_FAILURE);
     }
 
@@ -34,7 +34,7 @@ int main(void)
 
     while (1)
     {
-        _print_str(":) ");
+        _print_str("");
         nread = getline(&line, &len, stdin);
         if (nread == -1)
             break;
