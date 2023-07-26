@@ -3,7 +3,7 @@
 * find_the_path - an pointer that trys to access the given path using x_OK
 * @command: the given input by user
 * @path: the array of pointers to the desired executable file
-* Return: give NULL value on success
+* Return: NULL value on success
 */
 char *find_the_path(char *command, char *path[])
 {
