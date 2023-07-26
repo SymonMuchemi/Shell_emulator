@@ -34,7 +34,7 @@ int main(void)
 
     while (1)
     {
-        _print_str("#cisfun$ ");
+        _print_str(":) ");
         nread = getline(&line, &len, stdin);
         if (nread == -1)
             break;
