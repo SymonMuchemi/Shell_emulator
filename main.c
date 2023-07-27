@@ -15,7 +15,7 @@ int main(void)
     char *args[MAX_ARGS];
     char *executable_path;
     char *path[MAX_ARGS];
-    char *path_var;
+    char *path_var, *exit_command;
     int i;
 
     path_var = getenv("PATH");
@@ -40,10 +40,13 @@ int main(void)
             break;
 
         remove_newline(line);
-
+        exit_command = "exit";
         tokenize_args(args, line);
         if (args[0] == NULL)
             continue;
+        
+        if (strcmp(args[0], exit_command) == 0)
+            break;
 
         executable_path = find_the_path(args[0], path);
         if (executable_path != NULL)
