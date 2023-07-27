@@ -32,6 +32,7 @@ void remove_newline(char *str)
 }
 /**
 * create_buf - Create a buffer object
+* @filename: name of file
 * @buf: parameter
 * Return: pointer too created buffer or code 99
 */
@@ -49,6 +50,7 @@ char *create_buf(char *buf)
 /**
 * _print_str - function that calls the _putchar
 * _putchar - writes the character c to stdout
+* @c: The character to print
 * @string: characters passed
 * Return: On success 1.
 * On error, -1 is returned, and errno is set appropriately.
@@ -68,6 +70,7 @@ void _print_str(char *string)
 * by splitting it using space as the delimiter
 * @args_array: array of arguments
 * @str: string to be tokenized
+* @i: indexing variable
 * Return: nothing
 */
 void tokenize_args(char **args_array, char *str)
@@ -75,7 +78,6 @@ void tokenize_args(char **args_array, char *str)
 	char *token, *delim;
 	int i = 0;
 
-	remove_newline(str);
 	delim = " \t\n";
 	token = strtok(str, delim);
 
