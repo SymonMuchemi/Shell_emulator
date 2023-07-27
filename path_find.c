@@ -36,3 +36,18 @@ void initialize_path(char *path_var, char **path)
 	while ((path[i] = strtok(NULL, ":")) != NULL)
 		i++;
 }
+/**
+ * print_env - print out the environment variables
+ * @env: environment
+ * Return: nothing
+ */
+void print_env(char **env)
+{
+	int i;
+
+	if (env == NULL)
+        return;
+
+    for (i = 0; env[i] != NULL; i++)
+        _print_str(env[i]);
+}
