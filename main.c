@@ -70,10 +70,6 @@ int main(int argc, char **argv, char **envp)
             }
             wait(NULL);
         }
-        /*else
-        {
-            
-        }*/
     }
 
     free(line);
