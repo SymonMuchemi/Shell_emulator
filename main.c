@@ -47,7 +47,10 @@ int main(int argc, char **argv, char **envp)
             continue;
         
         if (strcmp(args[0], exit_command) == 0)
+        {
+            free(line);
             break;
+        }
         if (strcmp(args[0], env) == 0)
             print_env(envp);
 
